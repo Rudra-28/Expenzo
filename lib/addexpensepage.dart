@@ -60,7 +60,6 @@ class AddExpensePage extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                   textCapitalization: TextCapitalization.words,
                 ),
-
               ),
             ),
             SizedBox(height: 10,),
@@ -109,6 +108,11 @@ class AddExpensePage extends StatelessWidget {
 
               ),
             ),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: (){
+              provider.addExpense();
+              Navigator.pop(context);
+            }, child: Text("ADD EXPENSES"))
           ],
         ),
       ),
