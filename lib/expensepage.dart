@@ -1,3 +1,4 @@
+import 'package:expenzo/addexpensepage.dart';
 import 'package:expenzo/expenseprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,9 +27,12 @@ class ExpensePage extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(14.0),
-                child: const Text(
-                  "Total Expense Today",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                child: Text(
+                  "Total Expense Today ${provider.ExpenseTotalAmount()}",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
               ),
             ),
@@ -46,9 +50,27 @@ class ExpensePage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = provider.expenseList[index];
                     return ListTile(
-                      title: Text(item.title),
-                      subtitle: Text(item.amount.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-                      trailing: Text(item.date.toString()),
+                      title: Text(
+                        item.title,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(
+                        item.amount.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      trailing: Text(
+                        item.date.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     );
                   },
                 ),
@@ -57,7 +79,10 @@ class ExpensePage extends StatelessWidget {
 
             IconButton(
               onPressed: () {
-                provider.addExpense();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddExpensePage()),
+                );
               },
               icon: Icon(Icons.add),
               iconSize: 40,
